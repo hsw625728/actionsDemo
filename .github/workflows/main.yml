@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: actions
-      - uses: webfactory/ssh-agent@v0.1.1
+      - uses: webfactory/ssh-agent@v0.2.0
         with:
           ssh-private-key: ${{ secrets.ACCESS_TOKEN }}
       - name: Setup knownhosts
