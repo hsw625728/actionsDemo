@@ -30,7 +30,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
           ARGS: "-avz --delete"
-          SOURCE: "build/"
+          SOURCE: "build"
           REMOTE_HOST: "47.94.13.0"
           REMOTE_USER: "swhan"
           TARGET: "/home/swhan/delete/actions"
