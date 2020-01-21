@@ -1,0 +1,32 @@
+# test.yml
+# 监听test分支并部署到TestServer
+name: Deploy to PanoHire Test Server.
+on:
+  push:
+    branches:
+      - actions
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 切换分支
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: actions
+      # npm install
+      - name: npm install & build
+        run:  |
+          npm install
+          npm run-script build
+      # Deploy
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@v2.0.7
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: "47.94.13.0"
+          REMOTE_USER: "swhan"
+          TARGET: "/home/swhan/delete/actions"
